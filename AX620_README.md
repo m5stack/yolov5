@@ -1,5 +1,7 @@
 # ENVIRONMENT INIT
 ```bash
+sudo apt update
+sudo apt install libgl1 libglib2.0-0 git
 pip install -r requirements.txt
 ```
 
@@ -11,9 +13,9 @@ wget -P weights https://github.com/ultralytics/yolov5/releases/download/v6.2/yol
 
 # DOWN DATASETS
 ```bash
-mkdir -p datasets/rubbish
+mkdir -p datasets
 wget -P datasets https://github.com/Abandon-ht/coco_rubbish_dataset/archive/refs/heads/main.zip
-unzip -d datasets/rubbish datasets/coco_rubbish_dataset-main.zip
+unzip -d datasets datasets/main.zip
 ```
 
 # TRAIN
@@ -25,7 +27,7 @@ python train.py --data data/rubbish.yaml --cfg models/yolov5s.yaml --weights wei
 python detect.py --source datasets/rubbish/images/IMG_20210311_213716.jpg --weights ./runs/train/exp/weights/best.pt
 ```
 
-# EXPORT ONNX MODULE
+# EXPORT AX620 ONNX MODULE
 ```bash
 python export.py --include onnx --opset 11 --weights ./runs/train/exp/weights/best.pt ax620
 ```
