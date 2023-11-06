@@ -555,7 +555,7 @@ def run(
         y = model(im)  # dry runs
     if half and not coreml:
         im, model = im.half(), model.half()  # to FP16
-    if os.environ['EXPORT_ARCH'] == 'ax620':
+    if os.environ.get("EXPORT_ARCH", "local") == 'ax620':
         metadata = {'stride': int(max(model.stride)), 'names': model.names}  # model metadata
     else:
         shape = tuple((y[0] if isinstance(y, tuple) else y).shape)  # model output shape
